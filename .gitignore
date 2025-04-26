@@ -1,0 +1,33 @@
+# Jekyll generated files
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+vendor/
+Gemfile.lock
+
+# Ruby environment normalization
+.bundle/
+vendor/
+
+# Obsidian specific files
+blog_vault/.obsidian/workspace*
+blog_vault/.obsidian/cache
+blog_vault/.obsidian/plugins
+blog_vault/.trash/
+
+# OS specific files
+.DS_Store
+.directory
+.Trash-*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Editor directories and files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
