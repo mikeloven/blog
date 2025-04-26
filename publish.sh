@@ -73,29 +73,13 @@ if [ -d "$OBSIDIAN_ASSETS" ]; then
     done
 fi
 
-# Step 3: Convert Obsidian image links to Jekyll format in posts
-echo "🔄 Converting Obsidian image links to Jekyll format..."
-for post in "$JEKYLL_POSTS"/*.md; do
-    if [ -f "$post" ]; then
-        # Create a temporary file
-        tmp_file="$(mktemp)"
-        
-        # Replace Obsidian image links with Jekyll image links
-        # Format 1: ![[image.png]] -> ![image](/assets/img/image.png)
-        # Format 2: [[image.png]] -> ![image](/assets/img/image.png)
-        sed -E 's/!\[\[([^]]+)\]\]/![\1](\/assets\/img\/\1)/g' "$post" |
-        sed -E 's/\[\[([^]]+\.(?:png|jpg|jpeg|gif))\]\]/![\1](\/assets\/img\/\1)/g' |
-        # Replace spaces with hyphens in image URLs
-        sed -E 's|\((/assets/img/[^)]*) |\1-|g' > "$tmp_file"
-        
-        # Replace spaces with hyphens in all image paths
-        sed -i -E 's|(/assets/img/[^ )]*) |\1-|g' "$tmp_file"
-        
-        # Replace the original file with the modified one
-        mv "$tmp_file" "$post"
-        echo "  - Updated image links in $(basename "$post")"
-    fi
-done
+# Step 3: Process Obsidian image links (manual conversion recommended for now)
+echo "ℹ️ Note: For Obsidian image links, please convert them manually in your posts"
+echo "   From: ![[image.png]] "
+echo "   To:   ![Alt text](/assets/img/image-name.png)"
+
+# The automatic conversion was causing issues, so we've disabled it for now
+# You can manually format your image links in Obsidian using standard Markdown format
 
 # Step 4: Build the site locally (optional, for preview)
 if [ "$1" == "--preview" ]; then
