@@ -10,6 +10,7 @@ echo "🚀 Starting blog publishing process..."
 # Directory paths
 BLOG_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 OBSIDIAN_POSTS="$BLOG_ROOT/blog_vault/posts"
+OBSIDIAN_DRAFTS="$BLOG_ROOT/blog_vault/drafts"
 JEKYLL_POSTS="$BLOG_ROOT/_posts"
 OBSIDIAN_ASSETS="$BLOG_ROOT/blog_vault/assets"
 JEKYLL_ASSETS="$BLOG_ROOT/assets/img"
@@ -21,12 +22,34 @@ mkdir -p "$OBSIDIAN_ASSETS"
 
 # Step 1: Copy posts from Obsidian to Jekyll
 echo "📝 Copying posts from Obsidian to Jekyll..."
+
+# Copy from posts directory
 find "$OBSIDIAN_POSTS" -name "*.md" -type f | while read -r post; do
     filename=$(basename "$post")
     # Only copy if the file doesn't exist or is newer
     if [ ! -f "$JEKYLL_POSTS/$filename" ] || [ "$post" -nt "$JEKYLL_POSTS/$filename" ]; then
-        echo "  - Copying $filename"
+        echo "  - Copying $filename from posts"
         cp "$post" "$JEKYLL_POSTS/$filename"
+    fi
+done
+
+# Copy from drafts directory
+find "$OBSIDIAN_DRAFTS" -name "*.md" -type f | while read -r draft; do
+    # Convert spaces to hyphens and lowercase for Jekyll compatibility
+    original_filename=$(basename "$draft")
+    # Remove .md extension, convert spaces to hyphens, convert to lowercase
+    processed_name=$(echo "${original_filename%.md}" | tr ' ' '-' | tr '[:upper:]' '[:lower:]')
+    # Add current date if not already present and add .md extension back
+    if [[ ! $processed_name =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}- ]]; then
+        jekyll_filename="$(date +"%Y-%m-%d")-$processed_name.md"
+    else
+        jekyll_filename="$processed_name.md"
+    fi
+    
+    # Only copy if the file doesn't exist or is newer
+    if [ ! -f "$JEKYLL_POSTS/$jekyll_filename" ] || [ "$draft" -nt "$JEKYLL_POSTS/$jekyll_filename" ]; then
+        echo "  - Copying $original_filename from drafts as $jekyll_filename"
+        cp "$draft" "$JEKYLL_POSTS/$jekyll_filename"
     fi
 done
 
