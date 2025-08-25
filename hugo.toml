@@ -1,0 +1,7 @@
+baseURL = 'https://blog.mikeloven.com/'
+languageCode = 'en-us'
+title = 'Mike Loven Blog'
+theme = 'anatole'
+
+[params]
+  displayMode = "dark"

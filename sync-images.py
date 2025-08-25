@@ -1,0 +1,108 @@
+#!/usr/bin/env python3
+"""
+Sync images from Obsidian vault to Hugo static directory.
+This script finds all images referenced in blog posts and copies them from
+the Obsidian z-Attachments folder to Hugo's static/images folder.
+"""
+
+import os
+import re
+import shutil
+from pathlib import Path
+
+# Paths
+OBSIDIAN_VAULT = Path("/home/mloven/Documents/obsidian_vaults/vault")
+OBSIDIAN_BLOG = OBSIDIAN_VAULT / "blog"
+OBSIDIAN_ATTACHMENTS = OBSIDIAN_VAULT / "z-Attachments"
+HUGO_STATIC_IMAGES = Path("/home/mloven/workspace/github.com/mikeloven/blog/static/images")
+
+# Create Hugo images directory if it doesn't exist
+HUGO_STATIC_IMAGES.mkdir(parents=True, exist_ok=True)
+
+def find_image_references(content):
+    """Find all image references in markdown content."""
+    # Match both ![alt](image.png) and ![[image.png]] formats
+    patterns = [
+        r'!\[.*?\]\(([^)]+\.(?:png|jpg|jpeg|gif|webp|svg))\)',  # Standard markdown
+        r'!\[\[([^]]+\.(?:png|jpg|jpeg|gif|webp|svg))\]\]'      # Obsidian wiki links
+    ]
+    
+    images = []
+    for pattern in patterns:
+        matches = re.findall(pattern, content, re.IGNORECASE)
+        images.extend(matches)
+    
+    return images
+
+def copy_image_if_exists(image_name):
+    """Copy image from Obsidian attachments to Hugo static folder."""
+    source = OBSIDIAN_ATTACHMENTS / image_name
+    destination = HUGO_STATIC_IMAGES / image_name
+    
+    if source.exists():
+        shutil.copy2(source, destination)
+        print(f"Copied: {image_name}")
+        return True
+    else:
+        print(f"Warning: Image not found in attachments: {image_name}")
+        return False
+
+def update_image_links_in_content(content):
+    """Update image links to use Hugo's static path format."""
+    # Convert ![[image.png]] to ![]({{< static "images/image.png" >}})
+    content = re.sub(
+        r'!\[\[([^]]+\.(?:png|jpg|jpeg|gif|webp|svg))\]\]',
+        r'![](/images/\1)',
+        content,
+        flags=re.IGNORECASE
+    )
+    
+    # Update standard markdown links to use /images/ path
+    content = re.sub(
+        r'!\[([^\]]*)\]\(([^/)]+\.(?:png|jpg|jpeg|gif|webp|svg))\)',
+        r'![\1](/images/\2)',
+        content,
+        flags=re.IGNORECASE
+    )
+    
+    return content
+
+def process_blog_posts():
+    """Process all markdown files in the blog directory."""
+    if not OBSIDIAN_BLOG.exists():
+        print(f"Blog directory not found: {OBSIDIAN_BLOG}")
+        return
+    
+    processed_images = set()
+    
+    for md_file in OBSIDIAN_BLOG.glob("*.md"):
+        print(f"Processing: {md_file.name}")
+        
+        # Read the file
+        with open(md_file, 'r', encoding='utf-8') as f:
+            content = f.read()
+        
+        # Find images referenced in this file
+        images = find_image_references(content)
+        
+        # Copy images to Hugo static folder
+        for image in images:
+            if image not in processed_images:
+                copy_image_if_exists(image)
+                processed_images.add(image)
+        
+        # Update image links in content
+        updated_content = update_image_links_in_content(content)
+        
+        # Write back if content changed
+        if updated_content != content:
+            with open(md_file, 'w', encoding='utf-8') as f:
+                f.write(updated_content)
+            print(f"Updated image links in: {md_file.name}")
+    
+    print(f"\nProcessed {len(processed_images)} unique images")
+
+if __name__ == "__main__":
+    print("Syncing images from Obsidian to Hugo...")
+    process_blog_posts()
+    print("Done!")
