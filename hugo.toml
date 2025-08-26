@@ -1,7 +1,27 @@
 baseURL = 'https://blog.mikeloven.com/'
 languageCode = 'en-us'
+DefaultContentLanguage = "en"
 title = 'Mike Loven Blog'
 theme = 'anatole'
+
+summarylength = 10
+enableEmoji = true
+enableRobotsTXT = true
+
+# Syntax highlighting
+pygmentsUseClasses = true   
+pygmentsCodeFences = true
+pygmentsCodefencesGuessSyntax = true
+
+[markup]
+    [markup.goldmark]
+      [markup.goldmark.renderer]
+        unsafe=true
+
+[taxonomies]
+    category = "categories"
+    series = "series"
+    tag = "tags"
 
 [params]
   displayMode = "dark"
