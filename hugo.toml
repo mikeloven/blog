@@ -25,3 +25,7 @@ pygmentsCodefencesGuessSyntax = true
 
 [params]
   displayMode = "dark"
+  title = "Mike Loven"
+  author = "Mike Loven"
+  description = "Mike Loven's Blog"
+  mainSections = ["posts"]
