@@ -29,3 +29,4 @@ pygmentsCodefencesGuessSyntax = true
   author = "Mike Loven"
   description = "Mike Loven's Blog"
   mainSections = ["posts"]
+  profilePicture = "images/profile.png"
