@@ -43,22 +43,24 @@ def find_image_references(content):
 def copy_image_if_exists(image_name):
     """Copy image from Obsidian attachments to Hugo static folder."""
     source = OBSIDIAN_ATTACHMENTS / image_name
-    destination = HUGO_STATIC_IMAGES / image_name
+    # Replace spaces with underscores in the destination filename
+    clean_filename = image_name.replace(" ", "_")
+    destination = HUGO_STATIC_IMAGES / clean_filename
     
     if source.exists():
         shutil.copy2(source, destination)
-        print(f"Copied: {image_name}")
-        return True
+        print(f"Copied: {image_name} -> {clean_filename}")
+        return clean_filename
     else:
         print(f"Warning: Image not found in attachments: {image_name}")
-        return False
+        return None
 
 def update_image_links_in_content(content):
     """Update image links to use Hugo's static path format."""
-    # Convert ![[path/image.png]] to ![](/images/image.png) - extract just filename
+    # Convert ![[path/image.png]] to ![](/images/image.png) - extract just filename and clean it
     def replace_obsidian_link(match):
         full_path = match.group(1)
-        filename = Path(full_path).name
+        filename = Path(full_path).name.replace(" ", "_")
         return f'![](/images/{filename})'
     
     content = re.sub(
@@ -68,11 +70,11 @@ def update_image_links_in_content(content):
         flags=re.IGNORECASE
     )
     
-    # Update standard markdown links to use /images/ path - extract just filename
+    # Update standard markdown links to use /images/ path - extract just filename and clean it
     def replace_markdown_link(match):
         alt_text = match.group(1)
         full_path = match.group(2)
-        filename = Path(full_path).name
+        filename = Path(full_path).name.replace(" ", "_")
         return f'![{alt_text}](/images/{filename})'
     
     content = re.sub(
