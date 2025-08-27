@@ -12,4 +12,4 @@ Another post to test things out.
 
 Here's a shark:
 
-![](/images/z-Attachments/2025-08-26_20-11 2.png)
+![](/images/2025-08-26_20-11 2.png)

@@ -55,18 +55,29 @@ def copy_image_if_exists(image_name):
 
 def update_image_links_in_content(content):
     """Update image links to use Hugo's static path format."""
-    # Convert ![[image.png]] to ![]({{< static "images/image.png" >}})
+    # Convert ![[path/image.png]] to ![](/images/image.png) - extract just filename
+    def replace_obsidian_link(match):
+        full_path = match.group(1)
+        filename = Path(full_path).name
+        return f'![](/images/{filename})'
+    
     content = re.sub(
         r'!\[\[([^]]+\.(?:png|jpg|jpeg|gif|webp|svg))\]\]',
-        r'![](/images/\1)',
+        replace_obsidian_link,
         content,
         flags=re.IGNORECASE
     )
     
-    # Update standard markdown links to use /images/ path
+    # Update standard markdown links to use /images/ path - extract just filename
+    def replace_markdown_link(match):
+        alt_text = match.group(1)
+        full_path = match.group(2)
+        filename = Path(full_path).name
+        return f'![{alt_text}](/images/{filename})'
+    
     content = re.sub(
-        r'!\[([^\]]*)\]\(([^/)]+\.(?:png|jpg|jpeg|gif|webp|svg))\)',
-        r'![\1](/images/\2)',
+        r'!\[([^\]]*)\]\(([^)]+\.(?:png|jpg|jpeg|gif|webp|svg))\)',
+        replace_markdown_link,
         content,
         flags=re.IGNORECASE
     )
