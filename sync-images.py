@@ -12,8 +12,8 @@ from pathlib import Path
 
 # Paths
 OBSIDIAN_VAULT = Path("/home/mloven/Documents/obsidian_vaults/vault")
-OBSIDIAN_BLOG = OBSIDIAN_VAULT / "blog"
 OBSIDIAN_ATTACHMENTS = OBSIDIAN_VAULT / "z-Attachments"
+HUGO_CONTENT_POSTS = Path("/home/mloven/workspace/github.com/mikeloven/blog/content/posts")
 HUGO_STATIC_IMAGES = Path("/home/mloven/workspace/github.com/mikeloven/blog/static/images")
 
 # Create Hugo images directory if it doesn't exist
@@ -32,7 +32,13 @@ def find_image_references(content):
         matches = re.findall(pattern, content, re.IGNORECASE)
         images.extend(matches)
     
-    return images
+    # Extract just the filename from paths like "z-Attachments/image.png"
+    cleaned_images = []
+    for image in images:
+        filename = Path(image).name  # Extract just the filename
+        cleaned_images.append(filename)
+    
+    return cleaned_images
 
 def copy_image_if_exists(image_name):
     """Copy image from Obsidian attachments to Hugo static folder."""
@@ -68,14 +74,14 @@ def update_image_links_in_content(content):
     return content
 
 def process_blog_posts():
-    """Process all markdown files in the blog directory."""
-    if not OBSIDIAN_BLOG.exists():
-        print(f"Blog directory not found: {OBSIDIAN_BLOG}")
+    """Process all markdown files in the Hugo content posts directory."""
+    if not HUGO_CONTENT_POSTS.exists():
+        print(f"Hugo content posts directory not found: {HUGO_CONTENT_POSTS}")
         return
     
     processed_images = set()
     
-    for md_file in OBSIDIAN_BLOG.glob("*.md"):
+    for md_file in HUGO_CONTENT_POSTS.glob("*.md"):
         print(f"Processing: {md_file.name}")
         
         # Read the file

@@ -1,7 +1,10 @@
 #!/bin/bash
-# Blog publishing script - syncs images and pushes to GitHub
+# Blog publishing script - copies posts from Obsidian, syncs images and pushes to GitHub
 
 cd /home/mloven/workspace/github.com/mikeloven/blog
+
+echo "Copying blog posts from Obsidian to Hugo..."
+cp -v /home/mloven/Documents/obsidian_vaults/vault/blog/*.md content/posts/
 
 echo "Syncing images from Obsidian..."
 python3 sync-images.py
