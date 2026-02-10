@@ -20,26 +20,26 @@ html {
 }
 
 body {
-  color: #c9c9c9;
-  background-color: #1a1a1a;
+  color: #b4b4b4;
+  background-color: #1c1c1e;
   -webkit-text-size-adjust: 100%;
 }
 
 a {
-  color: #6ab0f3;
+  color: #4fd1c5;
   text-decoration: none;
 }
 
 a:hover, a:focus {
   text-decoration: underline;
-  color: #8bc4f7;
+  color: #6ee7db;
 }
 
 h1, h2, h3, h4, h5, h6 {
   margin-bottom: .5rem;
   font-weight: bold;
   line-height: 1.25;
-  color: #e8e8e8;
+  color: #4fd1c5;
 }
 
 h1 { font-size: 2rem; }
@@ -57,8 +57,8 @@ code, pre {
 code {
   padding: .25em .5em;
   font-size: 85%;
-  color: #e06c75;
-  background-color: #2d2d2d;
+  color: #4fd1c5;
+  background-color: #252528;
   border-radius: 3px;
 }
 
@@ -69,7 +69,9 @@ pre {
   padding: 1rem;
   font-size: .8rem;
   line-height: 1.4;
-  background-color: #2d2d2d;
+  background-color: #252528;
+  border: 1px solid #333;
+  border-radius: 6px;
   overflow-x: auto;
 }
 
@@ -99,7 +101,7 @@ img {
   text-align: center;
   padding: 2rem 1rem;
   color: rgba(255,255,255,.7);
-  background-color: #252525;
+  background-color: #141416;
 }
 
 @media (min-width: 48em) {
@@ -174,7 +176,7 @@ a.sidebar-nav-item:focus {
 article + article {
   margin-top: 2rem;
   padding-top: 2rem;
-  border-top: 1px solid #333;
+  border-top: 1px solid #2a2a2d;
 }
 
 /* Theme colors */
