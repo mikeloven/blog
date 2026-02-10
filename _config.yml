@@ -2,7 +2,7 @@ title: Mike's Blog
 description: Personal blog and thoughts
 author: Mike Loven
 url: "https://mikeloven.github.io"
-baseurl: ""
+baseurl: "/blog"
 
 # Build settings
 markdown: kramdown
