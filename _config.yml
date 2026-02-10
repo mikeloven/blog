@@ -9,7 +9,11 @@ markdown: kramdown
 permalink: /:year/:month/:day/:title/
 
 # Theme
-theme: minima
+remote_theme: poole/hyde
+
+hyde:
+  sidebar_sticky: true
+  reverse: false
 
 # Exclude from processing
 exclude:
@@ -27,3 +31,8 @@ defaults:
       type: "posts"
     values:
       layout: "post"
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-remote-theme
