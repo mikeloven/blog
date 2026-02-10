@@ -1,0 +1,38 @@
+title: Mike's Blog
+description: Personal blog and thoughts
+author: Mike Loven
+url: "https://mikeloven.github.io"
+baseurl: "/blog"
+
+# Build settings
+markdown: kramdown
+permalink: /:year/:month/:day/:title/
+
+# Theme
+remote_theme: poole/hyde
+
+hyde:
+  sidebar_sticky: true
+  reverse: false
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-remote-theme
+
+# Exclude from processing
+exclude:
+  - scripts/
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - .obsidian/
+  - Attachments/
+
+# Collections
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"

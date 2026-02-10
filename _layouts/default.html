@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700">
+  {% feed_meta %}
+  {% seo %}
+</head>
+<body class="theme-base-08{% if site.hyde.reverse %} layout-reverse{% endif %}">
+  {% include sidebar.html %}
+
+  <div class="content container">
+    {{ content }}
+  </div>
+</body>
+</html>

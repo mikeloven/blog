@@ -1,0 +1,16 @@
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+.bundle/
+vendor/
+*.gem
+Gemfile.lock
+
+# Obsidian
+.obsidian/
+.trash/
+
+# OS
+.DS_Store
+Thumbs.db

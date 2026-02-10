@@ -1,0 +1,21 @@
+<div class="sidebar"{% if site.hyde.sidebar_sticky %} style="position: sticky; top: 0;"{% endif %}>
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="{{ '/' | relative_url }}">{{ site.title }}</a>
+      </h1>
+      <p class="lead">{{ site.description }}</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item{% if page.url == '/' %} active{% endif %}" href="{{ '/' | relative_url }}">Home</a>
+      {% for page in site.pages %}
+        {% if page.title and page.title != "Home" %}
+          <a class="sidebar-nav-item{% if page.url == page.url %} active{% endif %}" href="{{ page.url | relative_url }}">{{ page.title }}</a>
+        {% endif %}
+      {% endfor %}
+    </nav>
+
+    <p>&copy; {{ site.time | date: '%Y' }} {{ site.author }}. All rights reserved.</p>
+  </div>
+</div>
