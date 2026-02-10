@@ -20,25 +20,26 @@ html {
 }
 
 body {
-  color: #515151;
-  background-color: #fff;
+  color: #c9c9c9;
+  background-color: #1a1a1a;
   -webkit-text-size-adjust: 100%;
 }
 
 a {
-  color: #268bd2;
+  color: #6ab0f3;
   text-decoration: none;
 }
 
 a:hover, a:focus {
   text-decoration: underline;
+  color: #8bc4f7;
 }
 
 h1, h2, h3, h4, h5, h6 {
   margin-bottom: .5rem;
   font-weight: bold;
   line-height: 1.25;
-  color: #313131;
+  color: #e8e8e8;
 }
 
 h1 { font-size: 2rem; }
@@ -56,8 +57,8 @@ code, pre {
 code {
   padding: .25em .5em;
   font-size: 85%;
-  color: #bf616a;
-  background-color: #f9f9f9;
+  color: #e06c75;
+  background-color: #2d2d2d;
   border-radius: 3px;
 }
 
@@ -68,7 +69,7 @@ pre {
   padding: 1rem;
   font-size: .8rem;
   line-height: 1.4;
-  background-color: #f9f9f9;
+  background-color: #2d2d2d;
   overflow-x: auto;
 }
 
@@ -97,8 +98,8 @@ img {
 .sidebar {
   text-align: center;
   padding: 2rem 1rem;
-  color: rgba(255,255,255,.5);
-  background-color: #202020;
+  color: rgba(255,255,255,.7);
+  background-color: #252525;
 }
 
 @media (min-width: 48em) {
@@ -173,7 +174,7 @@ a.sidebar-nav-item:focus {
 article + article {
   margin-top: 2rem;
   padding-top: 2rem;
-  border-top: 1px solid #eee;
+  border-top: 1px solid #333;
 }
 
 /* Theme colors */
