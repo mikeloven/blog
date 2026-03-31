@@ -1,9 +1,18 @@
 ---
 layout: post
-title: "AI for OffSec, Week 0: Building a Safe, Reproducible Research Loop"
+title: Hello World!
 date: 2026-03-31
-categories: [ai, security, offensive-security, research-log]
-tags: [llm, bug-bounty, pentest, ai-security, prompt-injection]
+categories:
+  - ai
+  - security
+  - offensive-security
+  - research-log
+tags:
+  - llm
+  - bug-bounty
+  - pentest
+  - ai-security
+  - prompt-injection
 ---
 
 ## Why I’m starting this blog
