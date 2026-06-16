@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Prompt Injection CTF - Gandalf
-date: 2026-06-16 19:57
+date: 2026-06-16
 categories:
   - ai
   - security
