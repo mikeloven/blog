@@ -18,7 +18,7 @@ excerpt: Notes from working through the early levels of Lakera's Gandalf prompt 
 I'll break this up into multiple posts so they don't get too long, but the first 4 are relatively quick, so I'll group them together.
 
 
-Gandalf is a Prompt Injection CTF developed by the folks at Lakera - https://gandalf.lakera.ai/baseline.  There are 7 levels (plus a hidden 8th level), and the goal is to get Gandalf to reveal the password to you.  It starts off fairly easy, but Gandalf's defenses get better with each level.
+Gandalf is a Prompt Injection CTF developed by the folks at Lakera - <https://gandalf.lakera.ai/baseline>.  There are 7 levels (plus a hidden 8th level), and the goal is to get Gandalf to reveal the password to you.  It starts off fairly easy, but Gandalf's defenses get better with each level.
 
 The "Key Insights" is a small explanation that Lakera gives you once you submit the password.
 
