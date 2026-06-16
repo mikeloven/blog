@@ -16,7 +16,6 @@ kramdown:
 # Exclude from processing
 exclude:
   - scripts/
-  - templates/
   - Gemfile
   - Gemfile.lock
   - README.md
