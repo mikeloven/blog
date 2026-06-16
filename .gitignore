@@ -14,3 +14,7 @@ Gemfile.lock
 # OS
 .DS_Store
 Thumbs.db
+
+# Local Obsidian scratch areas, not published
+notes/
+drafts/
