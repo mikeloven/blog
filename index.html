@@ -3,17 +3,18 @@ layout: default
 title: Home
 ---
 
-<div class="posts">
-  {% for post in site.posts %}
-  <article class="post">
-    <h1 class="post-title">
-      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-    </h1>
-    <time datetime="{{ post.date | date_to_xmlschema }}" class="post-date">
-      {{ post.date | date_to_string }}
-    </time>
-    {{ post.excerpt }}
-  </article>
-  {% endfor %}
+<div class="home">
+  <ul class="posts">
+    {% for post in site.posts %}
+      <li>
+        <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
+        <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        {% if post.excerpt %}
+          <div class="post-excerpt">
+            {{ post.excerpt }}
+          </div>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
 </div>
-

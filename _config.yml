@@ -7,13 +7,11 @@ baseurl: ""
 # Build settings
 markdown: kramdown
 permalink: /:year/:month/:day/:title/
-
-# Theme
-remote_theme: poole/hyde
-
-hyde:
-  sidebar_sticky: true
-  reverse: false
+highlighter: rouge
+kramdown:
+  input: GFM
+  auto_ids: true
+  syntax_highlighter: rouge
 
 # Exclude from processing
 exclude:
@@ -35,4 +33,3 @@ defaults:
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
-  - jekyll-remote-theme
