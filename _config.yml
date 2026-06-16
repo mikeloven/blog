@@ -1,8 +1,8 @@
 title: Mike's Blog
 description: Personal blog and thoughts
 author: Mike Loven
-url: "https://mikeloven.github.io"
-baseurl: "/blog"
+url: "https://blog.mikeloven.com"
+baseurl: ""
 
 # Build settings
 markdown: kramdown
