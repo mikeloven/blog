@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Prompt Injection CTF - Gandalf - Level 1-4
-date: 2026-06-16
+date: 2026-06-15
 categories:
   - ai
   - security
