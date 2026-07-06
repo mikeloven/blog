@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 2026-07-05-Prompt-Injection-CTF-Gandalf-Level-7
+title: Prompt Injection CTF - Gandalf Level 7
 date: 2026-07-05
 categories:
   - ai
