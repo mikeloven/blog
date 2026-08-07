@@ -9,7 +9,7 @@ categories:
 tags:
   - ai-security
   - llm-security
-excerpt: One-sentence summary for the home page, feed, and previews.
+excerpt: Notes from working through the early levels of Lakera's Gandalf prompt injection CTF.
 ---
 
 #### Level 8
